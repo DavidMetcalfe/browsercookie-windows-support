@@ -7,9 +7,7 @@ login.
 
 ## Install
 
-```python
-pip install browsercookie
-```
+Simply include the browsercookie/ folder in your working directory, and `import browsercookie`.
 
 ### On Windows: 
 
