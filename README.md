@@ -7,7 +7,7 @@ login.
 
 ## Install
 
-Simply include the browsercookie/ folder in your working directory, and `import browsercookie`.
+Install required packages for all systems: `pip install pycryptodome keyring`, then simply include the browsercookie/ folder in your working directory, and `import browsercookie`.
 
 ### On Windows: 
 
