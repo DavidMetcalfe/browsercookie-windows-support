@@ -31,38 +31,38 @@ pip install pypiwin32
 Here is a hack to extract the title from a webpage:
 
 ```python
-    import re
-    get_title = lambda html: re.findall('<title>(.*?)</title>', html, flags=re.DOTALL)[0].strip()
+>>> import re
+>>> get_title = lambda html: re.findall('<title>(.*?)</title>', html, flags=re.DOTALL)[0].strip()
 ```
 
 And here is the webpage title when downloaded normally:
 
 ```python
-    import urllib2
-    url = 'https://bitbucket.org/'
-    public_html = urllib2.urlopen(url).read()
-    get_title(public_html)
-    >>> 'Git and Mercurial code management for teams'
+>>> import urllib2
+>>> url = 'https://bitbucket.org/'
+>>> public_html = urllib2.urlopen(url).read()
+>>> get_title(public_html)
+'Git and Mercurial code management for teams'
 ```
 
 Now let's try with **browsercookie** - make sure you are logged into
 Bitbucket in Firefox before trying this example:
 
 ```python
-    import browsercookie
-    cj = browsercookie.firefox()
-    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
-    login_html = opener.open(url).read()
-    get_title(login_html)
-    >>> 'richardpenman / home &mdash; Bitbucket'
+>>> import browsercookie
+>>> cj = browsercookie.firefox()
+>>> opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+>>> login_html = opener.open(url).read()
+>>> get_title(login_html)
+'richardpenman / home &mdash; Bitbucket'
 ```
 
 Differences with Python3:
 
 ```python
-     import urllib.request
-     public_html = urllib.request.urlopen(url).read()
-     opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+>>> import urllib.request
+>>> public_html = urllib.request.urlopen(url).read()
+>>> opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
 ```
 
 You should see your own username here, meaning the module successfully
@@ -73,21 +73,21 @@ loading the Chrome cookies. Again make sure you are logged into
 Bitbucket in Chrome before running this:
 
 ```python
-    import requests
-    cj = browsercookie.chrome()
-    r = requests.get(url, cookies=cj)
-    get_title(r.content)
-    >>> 'richardpenman / home &mdash; Bitbucket'
+>>> import requests
+>>> cj = browsercookie.chrome()
+>>> r = requests.get(url, cookies=cj)
+>>> get_title(r.content)
+'richardpenman / home &mdash; Bitbucket'
 ```
 
 Alternatively if you don't know/care which browser has the cookies you
 want then all available browser cookies can be loaded:
 
 ```python 
-    cj = browsercookie.load()
-    r = requests.get(url, cookies=cj)
-    get_title(r.content)
-    >>> 'richardpenman / home &mdash; Bitbucket'
+>>> cj = browsercookie.load()
+>>> r = requests.get(url, cookies=cj)
+>>> get_title(r.content)
+'richardpenman / home &mdash; Bitbucket'
 ```
 
 ## Contribute
